@@ -1,0 +1,26 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "code402-tollbooth"
+main = "src/index.ts"
+compatibility_date = "2026-08-11"
+compatibility_flags = ["nodejs_compat"]
+
+# Temporary payment state (challenge → pending payment), TTL 60s in code.
+[[kv_namespaces]]
+binding = "PAYMENT_STATE"
+id = "758c02e06711495d939fa45f5f6ac606"
+
+# Global nonce management — single-writer Durable Object prevents
+# double-spending race conditions on concurrent paid requests.
+[durable_objects]
+bindings = [{ name = "NONCE_GUARD", class_name = "NonceGuard" }]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["NonceGuard"]
+
+# Public provider wallet (receives USDC per the Code402 standard).
+[vars]
+PROVIDER_WALLET = "0x2CC9237752CFEe65dB46530a958469E7ff12ac6B"
+CHAIN = "base"
+TOKEN = "USDC"
+AMOUNT = "0.001"

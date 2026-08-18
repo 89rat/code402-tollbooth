@@ -1,0 +1,23 @@
+{
+  "name": "code402-tollbooth",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "vitest run",
+    "deploy": "wrangler deploy",
+    "vectors": "node tests/generate-vectors.mjs"
+  },
+  "dependencies": {
+    "canonicalize": "^2.1.0",
+    "viem": "^2.55.17"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.21.3",
+    "@cloudflare/workers-types": "^4.20250815.0",
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.0.0"
+  }
+}

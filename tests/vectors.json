@@ -1,0 +1,23 @@
+{
+  "$schema": "code402-conformance/1",
+  "description": "Code402 Tollbooth conformance vectors: JCS canonicalization (RFC 8785) + EIP-191 offline signature. Test key is the public anvil #0 key (zero funds).",
+  "privateKey_testOnly": "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
+  "vectors": [
+    {
+      "name": "basic-402-challenge",
+      "challenge": {
+        "version": 1,
+        "chain": "base",
+        "token": "USDC",
+        "amount": "0.001",
+        "address": "0x2CC9237752CFEe65dB46530a958469E7ff12ac6B",
+        "nonce": "tb_deadbeefdeadbeefdeadbeefdeadbeef",
+        "resource": "/api/hello"
+      },
+      "canonicalJcs": "{\"address\":\"0x2CC9237752CFEe65dB46530a958469E7ff12ac6B\",\"amount\":\"0.001\",\"chain\":\"base\",\"nonce\":\"tb_deadbeefdeadbeefdeadbeefdeadbeef\",\"resource\":\"/api/hello\",\"token\":\"USDC\",\"version\":1}",
+      "signatureEip191": "0xda5a69b944287ea0a6c239479848fc7d5709e4193ae64763de4ab9a2ad355a54673f781fa4e613e808d3a0832774d588a055ebe7a704fd9fb5a0e9353ca193301b",
+      "expectedRecoveredAddress": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      "notes": "Verify: canonicalize(challenge) === canonicalJcs; recoverMessageAddress({message: canonicalJcs, signature}) === expectedRecoveredAddress."
+    }
+  ]
+}
