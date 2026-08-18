@@ -4,6 +4,11 @@ main = "src/index.ts"
 compatibility_date = "2026-08-11"
 compatibility_flags = ["nodejs_compat"]
 
+# Consolidated under the code402.dev zone.
+routes = [
+  { pattern = "tollbooth.code402.dev", custom_domain = true }
+]
+
 [observability]
 enabled = true
 
