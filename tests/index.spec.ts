@@ -32,7 +32,7 @@ describe("code402-tollbooth", () => {
     expect(body.token).toBe("USDC");
     expect(body.amount).toBe("0.001");
     expect(body.address.toLowerCase()).toBe(env.PROVIDER_WALLET.toLowerCase());
-    expect(body.nonce).toMatch(/^tb_[0-9a-f]{32}$/);
+    expect(body.nonce).toMatch(/^tb_[0-9a-f]{64}$/);
   });
 
   it("Step 5b: request WITH SDK flow → 402 → sign → 200 OK", async () => {
