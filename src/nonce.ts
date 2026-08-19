@@ -15,7 +15,7 @@ export class NonceGuard implements DurableObject {
 
   /** Issue a fresh, globally-unique challenge nonce. */
   async issue(): Promise<{ nonce: string }> {
-    // 128 bits of entropy from the DO's own RNG — collision probability ~0.
+    // 256 bits of entropy from the DO's own RNG — collision probability ~0.
     const bytes = new Uint8Array(32); // 256-bit per x402 nonce convention (verified vs spec)
     crypto.getRandomValues(bytes);
     const nonce = "tb_" + Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
